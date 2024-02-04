@@ -3,7 +3,7 @@
     <div class="div">
       <img class="image" alt="Image" src="https://c.animaapp.com/im3oERTv/img/image-3.png" />
       <div class="text-wrapper-2">PerpusTel</div>
-      <router-link to="/buatakun" class="text-wrapper-3">Login</router-link>
+      <router-link to="/" class="text-wrapper-3">Login</router-link>
       <div class="group">
         <div class="text-wrapper-4">Welcome Bro</div>
         <div class="text-wrapper-5">Daftarkan Nama dan Password</div>
@@ -15,44 +15,113 @@
           <div class="text-wrapper-7">Daftar Dengan Apple</div>
           <Apple class="apple-instance" />
         </router-link>
-        <div class="overlap-2">
-          <!-- Ubah div menjadi elemen input -->
-          <input type="text" placeholder="Email" class="text-wrapper-8" />
-          <img class="mail" alt="Mail" src="https://c.animaapp.com/im3oERTv/img/mail.png" />
-        </div>
-        <div class="overlap-group-2">
-          <img
-            class="key-vertical"
-            alt="Key vertical"
-            src="https://c.animaapp.com/im3oERTv/img/key-vertical.svg"
-          />
-          <input type="text" placeholder="Password" class="text-wrapper-8" />
-        </div>
-        <div class="text-wrapper-9">OR</div>
+        <form @submit.prevent="submitRegistration">
+          <div class="text-wrapper-9">OR</div>
         <img class="vector" alt="Vector" src="https://c.animaapp.com/im3oERTv/img/vector-1.svg" />
         <img class="img" alt="Vector" src="https://c.animaapp.com/im3oERTv/img/vector-1.svg" />
-        <Component class="component-1" />
+          <div class="overlap-2">
+            <img class="key-vertical" alt="user" src=""/>
+            <input type="name" v-model="form.user" placeholder="UserName" class="text-wrapper-8" />
+          </div>
+          <div class="overlap-group-2">
+            <input type="text" v-model="form.email" placeholder="Email" class="text-wrapper-8" />
+            <img class="mail" alt="Mail" src="https://c.animaapp.com/im3oERTv/img/mail.png" />
+          </div>
+          <div class="overlap-group-3">
+            <img class="key-vertical" alt="Key vertical" src="https://c.animaapp.com/im3oERTv/img/key-vertical.svg"/>
+            <input type="password" v-model="form.password" placeholder="Password" class="text-wrapper-8" />
+          </div>
+          <div class="component">
+            <button type="submit" class="text-wrapper">Daftar</button>
+          </div>
+        </form>
       </div>
-    </div>
+      </div>
   </div>
 </template>
 
 <script>
-import Component from "./Componentt.vue";
 import Google from "./icons/Google/Google.vue";
 import Apple from "./icons/Apple.vue";
+import {ref} from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import Swal from 'sweetalert2';
 
 export default {
   name: "Register",
   components: {
-    Component,
     Google,
     Apple,
   },
-};
+  setup() {
+    const router = useRouter();
+
+    const form = ref({
+      name: '',
+      email: '',
+      password: ''
+    });
+
+    const submitRegistration = async () => {
+      try {
+        await axios.post('/register', {
+          name: form.value.user,
+          email: form.value.email,
+          password: form.value.password
+        });
+
+        router.push('/home');
+      } catch (error) {
+        showErrorMessage('Registration failed. Please check your information.');
+      }
+    };
+
+    const showErrorMessage = (message) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: message
+      });
+    };
+
+    return {
+    form,
+    submitRegistration,
+    router,
+    showErrorMessage
+  };
+  }
+}
 </script>
 
 <style>
+.component {
+  left: 4px !important;
+  position: absolute !important;
+  top: 702px !important;
+  background-color: #000000;
+  border-radius: 10px;
+  height: 70px;
+  position: relative;
+  width: 450px;
+}
+
+.component .text-wrapper {
+  color: #ffffff;
+  font-family: "Kanit", Helvetica;
+  font-size: 24px;
+  font-weight: 500;
+  height: 36px;
+  left: 194px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 16px;
+  background-color: transparent;
+}
+
 input {
   border: none;
   outline: none; /* Untuk menghilangkan border highlight pada focus */
@@ -239,6 +308,16 @@ input {
   left: 4px;
   position: absolute;
   top: 522px;
+  width: 450px;
+}
+
+.macbook-air .overlap-group-3 {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  height: 70px;
+  left: 4px;
+  position: absolute;
+  top: 612px;
   width: 450px;
 }
 

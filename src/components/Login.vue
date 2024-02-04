@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import Component from "./Component.vue";
 import Google from "./icons/Google/Google.vue";
 import Apple from "./icons/Apple.vue";
 import {ref} from 'vue';
@@ -48,7 +47,6 @@ import Swal from 'sweetalert2';
 export default {
   name: "Login",
   components: {
-    Component,
     Google,
     Apple,
   },
