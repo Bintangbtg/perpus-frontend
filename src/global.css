@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-kanit: Kanit;
+
+  /* font sizes */
+  --font-size-5xl: 24px;
+  --font-size-lgi: 19px;
+  --font-size-mini: 15px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-gainsboro: #d9d9d9;
+  --color-gray: rgba(37, 37, 37, 0.75);
+
+  /* Gaps */
+  --gap-xl: 20px;
+
+  /* Paddings */
+  --padding-12xl: 31px;
+  --padding-4xl: 23px;
+  --padding-mid: 17px;
+  --padding-xl: 20px;
+  --padding-sm: 14px;
+  --padding-mini: 15px;
+
+  /* Border radiuses */
+  --br-3xs: 10px;
+}
