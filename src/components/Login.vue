@@ -27,7 +27,7 @@
             <img class="key-vertical" alt="Key vertical" src="https://c.animaapp.com/im3oERTv/img/key-vertical.svg"/>
             <input type="password" v-model="form.password" placeholder="Password" class="text-wrapper-8" />
           </div>
-          <div class="component">
+          <div class="component1">
             <button type="submit" class="text-wrapper">Login</button>
           </div>
         </form>
@@ -314,7 +314,7 @@ input {
   width: 194px;
 }
 
-.component {
+.component1 {
   left: 4px !important;
   position: absolute !important;
   top: 632px !important;
@@ -325,7 +325,7 @@ input {
   width: 450px;
 }
 
-.component .text-wrapper {
+.component1 .text-wrapper {
   color: #ffffff;
   font-family: "Kanit", Helvetica;
   font-size: 24px;
@@ -337,6 +337,7 @@ input {
   position: absolute;
   text-align: center;
   top: 16px;
+  background-color: transparent;
 }
 
 </style>
