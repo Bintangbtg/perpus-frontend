@@ -8,11 +8,16 @@ import BuatAkun from './components/Register.vue';
 import Home from './components/Home.vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import UpdateBuku from './components/UpdateBuku.vue'
 
 const routes = [
     { path: '/', component: Desktop },
     { path: '/buatakun', component: BuatAkun },
     { path: '/home', component: Home},
+    {path: "/updatebuku/:id",
+        name: "UpdateBuku",
+        component: UpdateBuku,
+        props: true},
 ];
 
 const router = createRouter({

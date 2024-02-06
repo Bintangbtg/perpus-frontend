@@ -18,6 +18,7 @@
                     <td>{{buku.foto}}</td>
                     <td>{{buku.nama_buku}}</td>
                     <td>{{buku.deskripsi}}</td>
+                    <td><router-link class="btn btn-info" :to="'/updatebuku/' + buku.id_buku">EDIT</router-link></td>
                 </tr>
             </tbody>
         </table>
