@@ -9,7 +9,7 @@
                     <th>Foto Buku</th>
                     <th>Nama Buku</th>
                     <th>Deskripsi</th>
-                    <th colspan="2">Action</th>
+                    <th colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +20,7 @@
                     <td>{{buku.deskripsi}}</td>
                     <td><router-link class="btn btn-info" :to="'/updatebuku/' + buku.id_buku">EDIT</router-link></td>
                     <td><button class="btn btn-warning" @click="deleteBuku(buku.id_buku)">Delete</button></td>
+                    <td><router-link class="btn btn-succes" :to="'/pinjambuku'" >Pinjam</router-link></td>
                 </tr>
             </tbody>
         </table>

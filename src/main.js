@@ -10,6 +10,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import UpdateBuku from './components/UpdateBuku.vue'
 import AddBuku from './components/TambahBuku.vue'
+import PinjamBuku from './components/PinjamBuku.vue'
 
 const routes = [
     { path: '/', component: Desktop },
@@ -20,6 +21,7 @@ const routes = [
         component: UpdateBuku,
         props: true},
     {path: '/addbuku', component: AddBuku},
+    {path: '/pinjambuku', component: PinjamBuku},
 ];
 
 const router = createRouter({

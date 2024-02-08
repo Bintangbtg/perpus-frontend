@@ -1,0 +1,67 @@
+<template>
+  <div>
+    <h1>Peminjaman Buku</h1>
+    <form @submit.prevent="pinjamBuku">
+      <label for="id_siswa">Pilih ID Siswa:</label>
+      <select v-model="selectedSiswa" id="id_siswa" required>
+        <option v-for="siswa in siswaList" :key="siswa.id_siswa" :value="siswa.id_siswa">{{ siswa.id_siswa }}</option>
+      </select>
+      <label for="tanggal_pinjam">Tanggal Pinjam:</label>
+      <input type="date" v-model="tanggalPinjam" id="tanggal_pinjam" required>
+      <label for="tanggal_kembali">Tanggal Kembali:</label>
+      <input type="date" v-model="tanggalKembali" id="tanggal_kembali" required>
+      <button type="submit">Pinjam Buku</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      selectedSiswa: null,
+      tanggalPinjam: '',
+      tanggalKembali: '',
+      siswaList: [] 
+    };
+  },
+  created() {
+    this.fetchSiswaList();
+  },
+  methods: {
+    fetchSiswaList() {
+      axios.get('/getsiswa')
+        .then(response => {
+          this.siswaList = response.data;
+        })
+        .catch(error => {
+          console.error('Error fetching siswa list:', error);
+        });
+    },
+    pinjamBuku() {
+  const data = {
+    id_siswa: this.selectedSiswa,
+    tanggal_pinjam: this.tanggalPinjam,
+    tanggal_kembali: this.tanggalKembali
+  };
+
+  axios.post('/pinjam_buku', data)
+    .then(response => {
+      if (response.data.status === 1) {
+        alert('Buku berhasil dipinjam');
+      } else {
+        alert('Gagal meminjam buku');
+        console.log(data);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Terjadi kesalahan saat melakukan permintaan');
+      console.log(data);
+    });
+}
+  }
+};
+</script>
