@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <h4>PerpusTel
-                    <router-link to="/" class="btn btn-primary float-end">Login</router-link>
+                    <router-link to="/addbuku" class="btn btn-primary float-end">Tambah Buku</router-link>
                 </h4>
             </div>
         </div>

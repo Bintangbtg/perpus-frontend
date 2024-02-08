@@ -9,7 +9,7 @@
                     <th>Foto Buku</th>
                     <th>Nama Buku</th>
                     <th>Deskripsi</th>
-                    <th>Action</th>
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +19,7 @@
                     <td>{{buku.nama_buku}}</td>
                     <td>{{buku.deskripsi}}</td>
                     <td><router-link class="btn btn-info" :to="'/updatebuku/' + buku.id_buku">EDIT</router-link></td>
+                    <td><button class="btn btn-warning" @click="deleteBuku(buku.id_buku)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -49,9 +50,22 @@ export default {
                 this.buku = res.data.books
                 console.log(this.buku);
             })
+        },
+        async deleteBuku(id) {
+      try {
+        const response = await axios.delete(`/deletebuku/${id}`);
+        if (response.data.status) {
+          alert(response.data.message);
+          this.getBuku();
+        } else {
+          alert(response.data.message);
         }
+      } catch (error) {
+        console.error(error);
+      }
     }
-}
+  }
+};
 </script>
 
 <style>

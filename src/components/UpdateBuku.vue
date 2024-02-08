@@ -9,25 +9,58 @@
       <label for="deskripsi">Deskripsi:</label>
       <textarea v-model="editedBuku.deskripsi" id="deskripsi" required></textarea>
       <label for="foto">Foto Buku:</label>
-      <input type="text" v-model="editedBuku.foto" id="foto" required>
+      <input type="file" @change="onFileChange" id="foto" required>
       <button type="submit">Simpan Perubahan</button>
     </form>
   </div>
 </template>
 
 <script>
+import { defineComponent, ref } from 'vue';
 import axios from 'axios';
 
-export default {
+export default defineComponent({
   props: ['id'],
-  data() {
+  setup(props) {
+    const editedBuku = ref({
+      id_buku: props.id,
+      nama_buku: '',
+      deskripsi: '',
+      foto: null
+    });
+
+    const updateBuku = async () => {
+      const formData = new FormData();
+      formData.append('nama_buku', editedBuku.value.nama_buku);
+      formData.append('deskripsi', editedBuku.value.deskripsi);
+      formData.append('foto', editedBuku.value.foto);
+
+      axios.put(`/updatebuku/${props.id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      .then(response => {
+        if (response.data.status) {
+          alert('Buku berhasil diperbarui');
+        } else {
+          alert('Gagal memperbarui buku', error);
+        }
+      })
+      .catch(error => {
+        console.error('Error updating buku:', error);
+      });
+    };
+
+    const onFileChange = (e) => {
+      const file = e.target.files[0];
+      editedBuku.value.foto = file;
+    };
+
     return {
-      editedBuku: {
-        id_buku: this.id, 
-        nama_buku: '',
-        deskripsi: '',
-        foto: ''
-      }
+      editedBuku,
+      updateBuku,
+      onFileChange
     };
   },
   created() {
@@ -38,23 +71,8 @@ export default {
       .catch(error => {
         console.error('Error fetching buku data:', error);
       });
-  },
-  methods: {
-    updateBuku() {
-      axios.put(`/updatebuku/${this.id}`, this.editedBuku)
-        .then(response => {
-          if (response.data.status) {
-            alert('Buku berhasil diperbarui');
-          } else {
-            alert('Gagal memperbarui buku');
-          }
-        })
-        .catch(error => {
-          console.error('Error updating buku:', error);
-        });
-    }
   }
-};
+});
 </script>
 
 <style>
