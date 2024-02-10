@@ -1,15 +1,22 @@
 <template>
-    <div>
-    <form @submit.prevent="addbuku">
-        <label for="nama_buku">Nama Buku:</label>
-        <input type="text" v-model="form.nama_buku" id="nama_buku" required>
-        <label for="deskripsi">Deskripsi:</label>
-        <input type="text" v-model="form.deskripsi" id="deskripsi" required>
-        <label for="foto">Foto:</label>
-        <input type="file" @change="onFileChange" id="foto">
-        <button type="submit">add</button>
-    </form>
+    <div class="container">
+  <h1 class="mt-5 mb-4">Tambah Buku Baru</h1>
+  <form @submit.prevent="addBuku">
+    <div class="mb-3">
+      <label for="nama_buku" class="form-label">Nama Buku:</label>
+      <input type="text" class="form-control" v-model="form.nama_buku" id="nama_buku" required>
     </div>
+    <div class="mb-3">
+      <label for="deskripsi" class="form-label">Deskripsi:</label>
+      <input type="text" class="form-control" v-model="form.deskripsi" id="deskripsi" required>
+    </div>
+    <div class="mb-3">
+      <label for="foto" class="form-label">Foto:</label>
+      <input type="file" class="form-control" @change="onFileChange" id="foto">
+    </div>
+    <button type="submit" class="btn btn-primary">Tambah</button>
+  </form>
+</div>
 </template>
 
 <script>

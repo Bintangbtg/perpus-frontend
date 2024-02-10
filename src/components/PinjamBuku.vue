@@ -1,18 +1,25 @@
 <template>
-  <div>
-    <h1>Peminjaman Buku</h1>
-    <form @submit.prevent="pinjamBuku">
-      <label for="id_siswa">Pilih ID Siswa:</label>
-      <select v-model="selectedSiswa" id="id_siswa" required>
+  <div class="container">
+  <h1 class="mt-5 mb-4">Peminjaman Buku</h1>
+  <form @submit.prevent="pinjamBuku">
+    <div class="mb-3">
+      <label for="id_siswa" class="form-label">Pilih ID Siswa:</label>
+      <select class="form-select" v-model="selectedSiswa" id="id_siswa" required>
         <option v-for="siswa in siswaList" :key="siswa.id_siswa" :value="siswa.id_siswa">{{ siswa.id_siswa }}</option>
       </select>
-      <label for="tanggal_pinjam">Tanggal Pinjam:</label>
-      <input type="date" v-model="tanggalPinjam" id="tanggal_pinjam" required>
-      <label for="tanggal_kembali">Tanggal Kembali:</label>
-      <input type="date" v-model="tanggalKembali" id="tanggal_kembali" required>
-      <button type="submit">Pinjam Buku</button>
-    </form>
-  </div>
+    </div>
+    <div class="mb-3">
+      <label for="tanggal_pinjam" class="form-label">Tanggal Pinjam:</label>
+      <input type="date" class="form-control" v-model="tanggalPinjam" id="tanggal_pinjam" required>
+    </div>
+    <div class="mb-3">
+      <label for="tanggal_kembali" class="form-label">Tanggal Kembali:</label>
+      <input type="date" class="form-control" v-model="tanggalKembali" id="tanggal_kembali" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Pinjam Buku</button>
+  </form>
+</div>
+
 </template>
 
 <script>

@@ -1,16 +1,23 @@
 <template>
-  <div>
-    <h1>Update Buku</h1>
-    <form @submit.prevent="updateBuku">
-      <label for="nama_buku">Nama Buku:</label>
-      <input type="text" v-model="editedBuku.nama_buku" id="nama_buku" required>
-      <label for="deskripsi">Deskripsi:</label>
-      <textarea v-model="editedBuku.deskripsi" id="deskripsi" required></textarea>
-      <label for="foto">Foto Buku:</label>
-      <input type="file" @change="onFileChange" id="foto" required>
-      <button type="submit">Simpan Perubahan</button>
-    </form>
-  </div>
+  <div class="container">
+  <h1 class="mt-5 mb-4">Update Buku</h1>
+  <form @submit.prevent="updateBuku">
+    <div class="mb-3">
+      <label for="nama_buku" class="form-label">Nama Buku:</label>
+      <input type="text" class="form-control" v-model="editedBuku.nama_buku" id="nama_buku" required>
+    </div>
+    <div class="mb-3">
+      <label for="deskripsi" class="form-label">Deskripsi:</label>
+      <textarea class="form-control" v-model="editedBuku.deskripsi" id="deskripsi" rows="4" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="foto" class="form-label">Foto Buku:</label>
+      <input type="file" class="form-control" @change="onFileChange" id="foto" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+  </form>
+</div>
+
 </template>
 
 <script>

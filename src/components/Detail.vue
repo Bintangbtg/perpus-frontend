@@ -1,16 +1,20 @@
 <template>
-  <div>
-    <h1>Tambah Item Peminjaman Buku</h1>
-    <form @submit.prevent="tambahItem">
-      <label for="id_buku">ID Buku:</label>
-      <select v-model="selectedBuku" id="id_buku" required>
+  <div class="container">
+  <h1 class="mt-5 mb-4">Tambah Item Peminjaman Buku</h1>
+  <form @submit.prevent="tambahItem">
+    <div class="mb-3">
+      <label for="id_buku" class="form-label">ID Buku:</label>
+      <select class="form-select" v-model="selectedBuku" id="id_buku" required>
         <option v-for="buku in bukuList" :key="buku.id_buku" :value="buku.id_buku">{{ buku.id_buku }}</option>
       </select>
-      <label for="qty">Jumlah:</label>
-      <input type="number" v-model="qty" id="qty" required>
-      <button type="submit">Tambah Item</button>
-    </form>
-  </div>
+    </div>
+    <div class="mb-3">
+      <label for="qty" class="form-label">Jumlah:</label>
+      <input type="number" class="form-control" v-model="qty" id="qty" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Tambah Item</button>
+  </form>
+</div>
 </template>
 
 <script>
