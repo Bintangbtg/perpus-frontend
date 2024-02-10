@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import UpdateBuku from './components/UpdateBuku.vue'
 import AddBuku from './components/TambahBuku.vue'
 import PinjamBuku from './components/PinjamBuku.vue'
+import Detail from './components/Detail.vue'
 
 const routes = [
     { path: '/', component: Desktop },
@@ -22,6 +23,10 @@ const routes = [
         props: true},
     {path: '/addbuku', component: AddBuku},
     {path: '/pinjambuku', component: PinjamBuku},
+    {path: '/detail/:id',
+        name: "Detail",
+        component: Detail,
+        props: true},
 ];
 
 const router = createRouter({

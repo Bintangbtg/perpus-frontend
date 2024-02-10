@@ -17,6 +17,7 @@
 
 <script>
 import axios from 'axios';
+import {useRouter} from 'vue-router';
 
 export default {
   data() {
@@ -51,6 +52,9 @@ export default {
     .then(response => {
       if (response.data.status === 1) {
         alert('Buku berhasil dipinjam');
+        const idPeminjaman = response.data.id_peminjaman_buku;
+
+        this.$router.push(`/detail/${idPeminjaman}`);
       } else {
         alert('Gagal meminjam buku');
         console.log(data);
